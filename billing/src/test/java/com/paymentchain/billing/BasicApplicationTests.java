@@ -26,17 +26,21 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(InvoiceRestController.class)//junit5 suport extension interface hrough which classes can integrate with the JUnit test.
-@AutoConfigureMockMvc /*allow test only http incoming request layer without start the serve,  but starting the full spring application context*/
+@WebMvcTest(InvoiceRestController.class) // junit5 suport extension interface hrough which classes can integrate with
+                                         // the JUnit test.
+@AutoConfigureMockMvc /*
+                       * allow test only http incoming request layer without start the serve, but
+                       * starting the full spring application context
+                       */
 public class BasicApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
-    @MockBean 
+    @MockBean
     private InvoiceRepository ir;
-    @MockBean 
+    @MockBean
     InvoiceRequestMapper irm;
-    @MockBean 
+    @MockBean
     InvoiceResposeMapper irspm;
     private static final String PASSWORD = "admin";
     private static final String USER = "admin";
@@ -61,8 +65,7 @@ public class BasicApplicationTests {
         Mockito.when(irspm.InvoiceToInvoiceRespose(mockdto)).thenReturn(new InvoiceResponse());
         this.mockMvc.perform(post("/billing").header("Authorization", "Basic " + encoding)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(asJsonString(mockdto))
-        ).andDo(print()).andExpect(status().isOk());
+                .content(asJsonString(mockdto))).andDo(print()).andExpect(status().isOk());
     }
 
     @Test
@@ -77,10 +80,12 @@ public class BasicApplicationTests {
         invoiceResponse.setInvoiceId(1);
         Mockito.when(irspm.InvoiceToInvoiceRespose(mockdto)).thenReturn(invoiceResponse);
         this.mockMvc.perform(get("/billing/{id}", mockdto.getId()).header("Authorization", "Basic " + encoding)
-                .accept(MediaType.APPLICATION_JSON)               
-        ).andDo(print()).andExpect(status().isOk())
+                .accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.invoiceId").value(1));
     }
+
+    // Ajustes para ver nuevos cambios GG estos cambios se presentan desde feature
+    // pasa por CI usando jenkins y pasa a rama Master
 
 }
