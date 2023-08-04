@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-InvoiceApplication<billing>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.paymentchain.billing.InvoiceApplication",
+      "projectName": "billing",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
