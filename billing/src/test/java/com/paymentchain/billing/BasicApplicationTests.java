@@ -88,4 +88,7 @@ public class BasicApplicationTests {
     // Ajustes para ver nuevos cambios GG estos cambios se presentan desde feature
     // pasa por CI usando jenkins y pasa a rama Master
 
+    // Este es un ultimo cambio de correcion para desplegar via CI por jenkins y
+    // realizar merge por jenkins
+
 }
